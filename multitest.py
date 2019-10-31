@@ -393,19 +393,19 @@ def average_runs(samp):
 # Disables tqdm prompt (progress bar, we only want one main one)
 disable_tqdm = True
 # Sample size, runs each algorithm for each k_max samp_size times
-samp_size = 10
+samp_size = 2000
 # NumH to optimize for
 numH = 8
 
 # Range of k's to test
-k_max_range = []
+k_max_range = [1]
 
 # Inputs k_max_range
 
 total_k_max = 0
 
-for i in range(1,120):
-    k_max_val = i
+for i in range(1,30):
+    k_max_val = i * 4
     k_max_range.append(k_max_val)
     total_k_max += k_max_val
 
@@ -482,5 +482,5 @@ ax = sns.lineplot(x="k_max", y="runmax", style="Method", hue="Method", ci=100, d
 ax.set(xlabel='$k_\mathrm{max}$', ylabel='Outcome')
 ax.set_title('$k_\mathrm{max}$ versus Outcome for Varying Algorithms, $\mathsf{NumH} = 8$')
 
-plt.savefig("algorithm-comparison-no-title.pdf")
+plt.savefig("algorithm-comparison-" + str(samp_size) + ".pdf")
 plt.show()
